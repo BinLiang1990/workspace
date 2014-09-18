@@ -1,0 +1,7 @@
+host=hpp
+port=8080
+timeout=1
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/opm?useUnicode=true&characterEncoding=utf8
+jdbc.username=randy
+jdbc.password=mysql

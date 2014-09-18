@@ -1,0 +1,122 @@
+<project name="vns_consumer" default="dist_product" basedir=".">
+	<property name="version" value="1.0.0.0" />
+	<property name="packageName" value="vns_consumer_v${version}" />
+
+	<property name="app.version" value="${version}" />
+	<property name="app.name" value="vns_consumer" />
+	<property name="app.fullname" value="${packageName}" />
+	<property name="build.home" value="${basedir}/build" />
+	<property name="dist.home" value="${basedir}/dist" />
+	<property name="src.home" value="${basedir}/src" />
+	<property name="lib.home" value="${basedir}/lib" />
+	<property name="install.home" value="${basedir}/install" />
+	<property name="config.home" value="${basedir}/config" />
+	<property name="packageDir" value="${dist.home}/${app.fullname}" />
+
+	<property name="compile.debug" value="true" />
+	<property name="compile.deprecation" value="false" />
+	<property name="compile.optimize" value="false" />
+
+	<property name="VNSConsumer" value="cn.vobile.vns.consumer.entrance.VNSConsumer" />
+
+	<path id="compile.classpath">
+		<fileset dir="${lib.home}">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement path="${config.home}" />
+	</path>
+
+	<target name="clean" description="Delete old build and dist directories">
+		<delete dir="${build.home}" />
+		<delete dir="${dist.home}" />
+	</target>
+
+	<target name="prepare" depends="clean" description="Prepare for distribution, create build and dist directories">
+		<mkdir dir="${build.home}" />
+		<mkdir dir="${build.home}/classes" />
+		<mkdir dir="${build.home}/lib" />
+		<mkdir dir="${dist.home}" />
+		<mkdir dir="${build.home}/config" />
+	</target>
+
+
+	<target name="compile_src" depends="prepare" description="Compile Java sources">
+		<javac srcdir="${src.home}" destdir="${build.home}/classes" encoding="UTF-8" debug="${compile.debug}" deprecation="${compile.deprecation}" optimize="${compile.optimize}" target="1.5">
+			<classpath refid="compile.classpath" />
+		</javac>
+	</target>
+
+	<property name="findbugs.home" value="/opt/findbugs/current" />
+	<taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask"
+			classpath="${findbugs.home}/lib/findbugs-ant.jar" />
+	<target name="findbugs" depends="compile_src">
+		<findbugs home="${findbugs.home}" output="xml" outputFile="findbugs.xml">
+			<sourcePath path="${src.home}" />
+			<class location="${build.home}/classes" />
+		</findbugs>
+	</target>
+
+
+	<target name="build_product" depends="findbugs" description="build product appliaction">
+		<!-- Copy application resources -->
+		<copy todir="${build.home}/classes">
+			<fileset dir="${src.home}" excludes="**/*.java" />
+		</copy>
+
+		<copy todir="${build.home}/lib">
+			<fileset dir="${lib.home}" excludes="**/.svn*">
+			</fileset>
+		</copy>
+
+		<copy todir="${build.home}">
+			<fileset file="vns_consumer.sh">
+			</fileset>
+		</copy>
+
+		<copy todir="${build.home}/config">
+			<fileset file="${config.home}/applicationContext.xml">
+			</fileset>
+		</copy>
+		<!-- jar build -->
+
+		<pathconvert property="mf.classpath" pathsep=" ">
+			<path refid="compile.classpath" />
+			<map from="${lib.home}" to="lib" />
+			<map from="${config.home}" to="config/" />
+		</pathconvert>
+
+		<jar destfile="${build.home}/${app.name}.jar" basedir="${build.home}/classes">
+			<manifest>
+				<attribute name="Main-Class" value="${VNSConsumer}" />
+				<attribute name="Class-Path" value="${mf.classpath}" />
+			</manifest>
+		</jar>
+
+	</target>
+
+
+	<target name="dist_product" depends="build_product" description="Create binary distribution">
+		<tar destfile="${dist.home}/${app.name}.tar.gz" compression="gzip">
+			<fileset dir="${build.home}">
+				<!--<include name="**"/>-->
+				<include name="${app.name}.jar" />
+				<include name="*.sh" />
+				<include name="lib/" />
+				<include name="config/" />
+			</fileset>
+		</tar>
+		<copy file="${dist.home}/${app.name}.tar.gz" todir="${packageDir}" />
+		<copy todir="${packageDir}">
+			<fileset dir="${install.home}">
+				<include name="install/**" />
+			</fileset>
+		</copy>
+		<delete file="${dist.home}/${app.name}.tar.gz" />
+		<tar destfile="${dist.home}/${app.fullname}.tar.gz" compression="gzip" basedir="${dist.home}">
+		</tar>
+		<delete dir="${packageDir}" />
+		<echo message="tar package built succeed." />
+	</target>
+
+
+</project>

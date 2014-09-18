@@ -1,0 +1,7 @@
+编译前请先安装编译环境， jdk环境
+1, 编译环境 aptitude install ant
+
+2, jdk      aptitude install sun-java5-jdk/sun-java5-jdk
+
+
+3, 先运行ant clean清除, 再运行ant 进行编译，打包后文件生成在build/dist目录下

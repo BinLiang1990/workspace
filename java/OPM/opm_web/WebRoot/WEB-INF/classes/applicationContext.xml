@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+			http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-3.0.xsd
+			http://www.springframework.org/schema/security
+			http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<context:property-placeholder location="classpath:conf.properties"/>
+	<!-- the struts beans -->
+	<beans:bean id="AddUserAction"
+		class="cn.vobile.opm.web.action.userpage.AddUserAction" scope="prototype">
+	</beans:bean>
+	<beans:bean id="GetAllOpmUsersAction"
+		class="cn.vobile.opm.web.action.userpage.GetAllOpmUsersAction" scope="prototype">
+	</beans:bean>
+	<beans:bean id="GetOpmUserAction"
+		class="cn.vobile.opm.web.action.userpage.GetOpmUserAction" scope="prototype">
+	</beans:bean>
+	<beans:bean id="ModifyUserAction"
+		class="cn.vobile.opm.web.action.userpage.ModifyUserAction" scope="prototype">
+	</beans:bean>
+	<beans:bean id="GetAllAlarmPointAction"
+		class="cn.vobile.opm.web.action.alarmpage.GetAllAlarmPointAction"
+		scope="prototype">
+	</beans:bean>
+	<beans:bean id="GetAllAlarmPointBackupAction"
+		class="cn.vobile.opm.web.action.alarmpage.GetAllAlarmPointBackupAction"
+		scope="prototype">
+	</beans:bean>
+	<beans:bean id="AlarmGUIAction"
+		class="cn.vobile.opm.web.action.alarmpage.AlarmGUIAction" scope="prototype">
+	</beans:bean>
+	<beans:bean id="AcceptedAction"
+		class="cn.vobile.opm.web.action.alarmpage.AcceptedAction" scope="prototype">
+	</beans:bean>
+	<beans:bean id="AlarmedAction"
+		class="cn.vobile.opm.web.action.alarmpage.AlarmedAction" scope="prototype">
+	</beans:bean>
+	<beans:bean id="ResponsedAction"
+		class="cn.vobile.opm.web.action.alarmpage.ResponsedAction" scope="prototype">
+	</beans:bean>
+	<beans:bean id="GetSearchAction"
+		class="cn.vobile.opm.web.action.searchpage.GetSearchAction" scope="prototype">
+	</beans:bean>
+	<beans:bean id="SearchConditionsAction"
+		class="cn.vobile.opm.web.action.searchpage.SearchConditionsAction"
+		scope="prototype">
+	</beans:bean>
+	<beans:bean id="GetAllMonitorAction"
+		class="cn.vobile.opm.web.action.monitorpage.GetAllMonitorAction"
+		scope="prototype">
+	</beans:bean>
+	<beans:bean id="CreateAlarmSpotAction"
+		class="cn.vobile.opm.web.action.monitorpage.CreateAlarmSpotAction"
+		scope="prototype">
+	</beans:bean>
+	<beans:bean id="GetHistoryAction"
+		class="cn.vobile.opm.web.action.historypage.GetHistoryAction" scope="prototype">
+	</beans:bean>
+	<beans:bean id="GetAPointHistory"
+		class="cn.vobile.opm.web.action.historypage.GetAPointHistory" scope="prototype">
+	</beans:bean>
+	<beans:bean id="ChangeNoAlarmEndTimeAction"
+		class="cn.vobile.opm.web.action.monitorpage.ChangeNoAlarmEndTimeAction"
+		scope="prototype">
+	</beans:bean>
+	<beans:bean id="ChangePwdAction"
+		class="cn.vobile.opm.web.action.userpage.ChangePwdAction" scope="prototype">
+	</beans:bean>
+	<beans:bean id="AcceptedAListAction"
+		class="cn.vobile.opm.web.action.alarmpage.AcceptedAListAction" scope="prototype">
+	</beans:bean>
+	<beans:bean id="AlarmedAListAction"
+		class="cn.vobile.opm.web.action.alarmpage.AlarmedAListAction" scope="prototype">
+		<beans:property name="idc"><beans:value>${idc}</beans:value></beans:property>
+		<beans:property name="vnsHost"><beans:value>${vns_host}</beans:value></beans:property>
+		<beans:property name="vnsPort"><beans:value>${vns_port}</beans:value></beans:property>
+	</beans:bean>
+	<beans:bean id="ResponsedListAction"
+		class="cn.vobile.opm.web.action.alarmpage.ResponsedListAction" scope="prototype">
+	</beans:bean>
+	<beans:bean id="DeleteAListAction"
+		class="cn.vobile.opm.web.action.monitorpage.DeleteAListAction" scope="prototype">
+	</beans:bean>
+	<beans:bean id="ChangeDelayTimeListAction"
+		class="cn.vobile.opm.web.action.monitorpage.ChangeDelayTimeListAction"
+		scope="prototype">
+	</beans:bean>
+	<beans:bean id="ChangeAlarmLevelListAction"
+		class="cn.vobile.opm.web.action.monitorpage.ChangeAlarmLevelListAction"
+		scope="prototype">
+	</beans:bean>
+	<beans:bean id="ChangeNoAlarmEndTimeListAction"
+		class="cn.vobile.opm.web.action.monitorpage.ChangeNoAlarmEndTimeListAction"
+		scope="prototype">
+	</beans:bean>
+	<beans:bean id="GetOpHistoryAction"
+		class="cn.vobile.opm.web.action.ophistorypage.GetOpHistoryAction"
+		scope="prototype">
+	</beans:bean>
+	<beans:bean id="ExportHistoryExcelAction"
+		class="cn.vobile.opm.web.action.historypage.ExportHistoryExcelAction"
+		scope="prototype">
+	</beans:bean>
+	<beans:bean id="ExportOpHistoryExcelAction"
+		class="cn.vobile.opm.web.action.ophistorypage.ExportOpHistoryExcelAction"
+		scope="prototype">
+	</beans:bean>
+	<beans:bean id="AjaxChangeDelayTimeAction"
+		class="cn.vobile.opm.web.action.searchpage.AjaxChangeDelayTimeAction"
+		scope="prototype">
+	</beans:bean>
+	<beans:bean id="AjaxChangeAlarmLevelAction"
+		class="cn.vobile.opm.web.action.searchpage.AjaxChangeAlarmLevelAction"
+		scope="prototype">
+	</beans:bean>
+	<beans:bean id="AjaxChangeNoAlarmEndTimeAction"
+		class="cn.vobile.opm.web.action.searchpage.AjaxChangeNoAlarmEndTimeAction"
+		scope="prototype">
+	</beans:bean>
+	<beans:bean id="AjaxUpdateAlarmPointAction"
+		class="cn.vobile.opm.web.action.searchpage.AjaxUpdateAlarmPointAction"
+		scope="prototype">
+	</beans:bean>
+	<beans:bean id="AjaxBatchModifyAlarmPointAction"
+		class="cn.vobile.opm.web.action.searchpage.AjaxBatchModifyAlarmPointAction"
+		scope="prototype">
+	</beans:bean>
+	<beans:bean id="AjaxDeleteAListAction"
+		class="cn.vobile.opm.web.action.searchpage.AjaxDeleteAListAction"
+		scope="prototype">
+	</beans:bean>
+	<beans:bean id="AjaxRecoveryAListAction"
+		class="cn.vobile.opm.web.action.searchpage.AjaxRecoveryAListAction"
+		scope="prototype">
+	</beans:bean>
+	<!-- the struts beans -->
+
+	<!-- data source -->
+	<beans:bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<beans:property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<beans:property name="jdbcUrl"
+			value="jdbc:mysql://${db}?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull" />
+		<beans:property name="user" value="${db_user}" />
+		<beans:property name="password" value="${db_pwd}" />
+
+		<!--连接池中保留的最小连接数。 -->
+		<beans:property name="minPoolSize">
+			<beans:value>0</beans:value>
+		</beans:property>
+
+		<!--连接池中保留的最大连接数。Default: 15 -->
+		<beans:property name="maxPoolSize">
+			<beans:value>15</beans:value>
+		</beans:property>
+
+		<!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+		<beans:property name="initialPoolSize">
+			<beans:value>3</beans:value>
+		</beans:property>
+
+		<!--最大空闲时间,30秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+		<beans:property name="maxIdleTime">
+			<beans:value>30</beans:value>
+		</beans:property>
+
+		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+		<beans:property name="acquireIncrement">
+			<beans:value>0</beans:value>
+		</beans:property>
+
+		<!--JDBC的标准参数，用以控制数据源内加载的PreparedStatements数量。但由于预缓存的statements 属于单个connection而不是整个连接池。所以设置这个参数需要考虑到多方面的因素。 
+			如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0 -->
+		<beans:property name="maxStatements">
+			<beans:value>0</beans:value>
+		</beans:property>
+
+		<!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
+		<beans:property name="idleConnectionTestPeriod">
+			<beans:value>60</beans:value>
+		</beans:property>
+
+		<!--定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 -->
+		<beans:property name="acquireRetryAttempts">
+			<beans:value>30</beans:value>
+		</beans:property>
+
+		<!--获取连接失败将会引起所有等待连接池来获取连接的线程抛出异常。但是数据源仍有效 保留，并在下次调用getConnection()的时候继续尝试获取连接。如果设为true，那么在尝试 
+			获取连接失败后该数据源将申明已断开并永久关闭。Default: false -->
+		<beans:property name="breakAfterAcquireFailure">
+			<beans:value>true</beans:value>
+		</beans:property>
+
+	</beans:bean>
+	<!-- data source -->
+
+	<!-- hibernate3 transaction -->
+	<beans:bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<beans:property name="dataSource">
+			<beans:ref bean="dataSource" />
+		</beans:property>
+		<beans:property name="hibernateProperties">
+			<beans:props>
+				<beans:prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</beans:prop>
+				<beans:prop key="hibernate.connection.useUnicode">true</beans:prop>
+				<beans:prop key="hibernate.connection.characterEncoding">UTF-8</beans:prop>
+				<beans:prop key="hibernate.connection.charSet">UTF-8</beans:prop>
+				<beans:prop key="hibernate.show_sql">false</beans:prop>
+
+				<beans:prop key="connection.autocommit">true</beans:prop>
+
+
+			</beans:props>
+		</beans:property>
+		<beans:property name="mappingResources">
+			<beans:list>
+				<beans:value>cn/vobile/opm/web/dao/Livemonitor.hbm.xml</beans:value>
+				<beans:value>cn/vobile/opm/web/dao/SearchConditions.hbm.xml
+				</beans:value>
+				<beans:value>cn/vobile/opm/web/dao/Opmuser.hbm.xml</beans:value>
+				<beans:value>cn/vobile/opm/web/dao/AlarmHistory.hbm.xml
+				</beans:value>
+				<beans:value>cn/vobile/opm/web/dao/UserOpHistory.hbm.xml
+				</beans:value>
+				<beans:value>cn/vobile/opm/web/dao/AlarmSpot.hbm.xml
+				</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+
+
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+
+	<!-- <beans:bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"> 
+		<beans:property name="configLocation" value="classpath:hibernate.cfg.xml"> 
+		</beans:property> </beans:bean> -->
+
+	<beans:bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<beans:property name="sessionFactory">
+			<beans:ref local="sessionFactory" />
+		</beans:property>
+	</beans:bean>
+	<!-- hibernate3 transaction -->
+
+	<!-- spring security using cas -->
+	<!-- cas -->
+	<beans:bean id="casAuthEntryPoint"
+		class="org.springframework.security.cas.web.CasAuthenticationEntryPoint">
+		<beans:property name="loginUrl"
+			value="http://${cas}/opm_cas/" />
+		<beans:property name="serviceProperties" ref="casService" />
+	</beans:bean>
+	<beans:bean id="casService"
+		class="org.springframework.security.cas.ServiceProperties">
+		<beans:property name="service"
+			value="http://${web}/opm_web/j_spring_cas_security_check" />
+	</beans:bean>
+
+	<beans:bean id="casAuthenticationFilter"
+		class="org.springframework.security.cas.web.CasAuthenticationFilter">
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+	</beans:bean>
+
+	<beans:bean id="casTicketValidator"
+		class="org.jasig.cas.client.validation.Cas20ServiceTicketValidator">
+		<beans:constructor-arg value="http://${cas}/opm_cas/" />
+	</beans:bean>
+
+	<beans:bean id="authenticationUserDetailsService"
+		class="org.springframework.security.core.userdetails.UserDetailsByNameServiceWrapper">
+		<beans:property name="userDetailsService" ref="jdbcUserService" />
+	</beans:bean>
+
+	<jdbc-user-service id="jdbcUserService"
+		data-source-ref="dataSource"
+		users-by-username-query="select userid, passwd, is_enabled from opmuser where
+				userid = ?"
+		authorities-by-username-query="select userid, usergroup from
+				opmuser where userid = ?" />
+
+	<beans:bean id="casAuthenticationProvider"
+		class="org.springframework.security.cas.authentication.CasAuthenticationProvider">
+		<beans:property name="ticketValidator" ref="casTicketValidator" />
+		<beans:property name="serviceProperties" ref="casService" />
+		<beans:property name="key"
+			value="an_id_for_this_auth_provider_only" />
+		<beans:property name="authenticationUserDetailsService"
+			ref="authenticationUserDetailsService" />
+	</beans:bean>
+
+	<!-- cas -->
+	<http pattern="/js/**" security="none" />
+	<http pattern="/css/**" security="none" />
+	<http pattern="/images/**" security="none" />
+	<http pattern="/style/**" security="none" />
+	<http pattern="/flowplayer/**" security="none" />
+	<http pattern="/music/**" security="none" />
+
+	<http pattern="/jsp/common/login.jsp*" security="none" />
+	<http auto-config='true' entry-point-ref="casAuthEntryPoint"
+		access-denied-page="/jsp/common/403.jsp">
+		<!-- User Viewer -->
+		<intercept-url pattern="/index.jsp"
+			access="ROLE_VIEWER, ROLE_GS, ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/GetAllAlarmPointAction.action"
+			access="ROLE_VIEWER, ROLE_GS, ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/GetAllMonitorAction.action"
+			access="ROLE_ADMIN" />
+		<intercept-url pattern="/GetHistoryAction.action"
+			access="ROLE_VIEWER, ROLE_GS, ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/GetAllOpmUsersAction.action"
+			access="ROLE_VIEWER, ROLE_GS, ROLE_OPS, ROLE_ADMIN" />
+
+
+		<!-- User GS -->
+		<intercept-url pattern="/AcceptedAction.action" access=" ROLE_GS, ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/AcceptedAListAction.action"
+			access=" ROLE_GS, ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/AlarmedAction.action" access=" ROLE_GS, ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/AlarmedAListAction.action"
+			access=" ROLE_GS, ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/GetAllAlarmPointBackupAction.action"
+			access=" ROLE_GS, ROLE_OPS, ROLE_ADMIN" />
+			
+		<!-- User OPS -->
+		<intercept-url pattern="/HistoryResponsedAction.action"
+			access="ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/ChangeAlarmLevelAction.action"
+			access="ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/ChangeAlarmLevelListAction.action"
+			access="ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/ChangeDelayTimeAction.action"
+			access="ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/ChangeDelayTimeListAction.action"
+			access="ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/UpdateAlarmPointAction.action"
+			access="ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/ResponsedAction.action" access="ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/ResponsedListAction.action"
+			access="ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/ChangeNoAlarmEndTimeAction.action"
+			access="ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/ChangeNoAlarmEndTimeListAction.action"
+			access="ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/GetSearchAction.action"
+			access="ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/SearchConditionsAction.action"
+			access="ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/AjaxBatchModifyAlarmPointAction.action"
+			access="ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/AjaxChangeAlarmLevelAction.action"
+			access="ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/AjaxChangeDelayTimeAction.action"
+			access="ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/AjaxChangeNoAlarmEndTimeAction.action"
+			access="ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/AjaxDeleteAListAction.action"
+			access="ROLE_OPS, ROLE_ADMIN" />
+		<intercept-url pattern="/AjaxUpdateAlarmPointAction.action"
+			access="ROLE_OPS, ROLE_ADMIN" />
+		<!-- User Admin -->
+		<intercept-url pattern="/jsp/main/user.jsp" access="ROLE_ADMIN" />
+		<intercept-url pattern="/jsp/main/user/*" access="ROLE_ADMIN" />
+		<intercept-url pattern="/ModifyUserAction.action"
+			access="ROLE_ADMIN" />
+		<intercept-url pattern="/AddUserAction.action" access="ROLE_ADMIN" />
+		<intercept-url pattern="/DeleteAListAction.action"
+			access="ROLE_ADMIN" />
+		<!-- login -->
+		<custom-filter ref="casAuthenticationFilter" position="CAS_FILTER" />
+
+		<logout logout-url="/j_spring_security_logout"
+			logout-success-url="http://${cas}/opm_cas/logout" />
+
+	</http>
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider ref="casAuthenticationProvider">
+		</authentication-provider>
+	</authentication-manager>
+
+	<!-- spring security -->
+
+	<!-- Dao -->
+	<beans:bean id="LivemonitorDAO" class="cn.vobile.opm.web.dao.LivemonitorDAO">
+		<beans:property name="sessionFactory">
+			<beans:ref bean="sessionFactory" />
+		</beans:property>
+	</beans:bean>
+	
+	<beans:bean id="AlarmSpotDAO" class="cn.vobile.opm.web.dao.AlarmSpotDAO">
+		<beans:property name="sessionFactory">
+			<beans:ref bean="sessionFactory" />
+		</beans:property>
+	</beans:bean>
+	
+	<beans:bean id="SearchConditionsDAO" class="cn.vobile.opm.web.dao.SearchConditionsDAO">
+		<beans:property name="sessionFactory">
+			<beans:ref bean="sessionFactory" />
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean id="OpmuserDAO" class="cn.vobile.opm.web.dao.OpmuserDAO">
+		<beans:property name="sessionFactory">
+			<beans:ref bean="sessionFactory" />
+		</beans:property>
+	</beans:bean>
+
+
+	<beans:bean id="AlarmHistoryDAO" class="cn.vobile.opm.web.dao.AlarmHistoryDAO">
+		<beans:property name="sessionFactory">
+			<beans:ref bean="sessionFactory" />
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean id="UserOpHistoryDAO" class="cn.vobile.opm.web.dao.UserOpHistoryDAO">
+		<beans:property name="sessionFactory">
+			<beans:ref bean="sessionFactory" />
+		</beans:property>
+	</beans:bean>
+
+</beans:beans>

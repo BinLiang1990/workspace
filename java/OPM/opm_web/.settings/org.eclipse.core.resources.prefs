@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+encoding//WebRoot/jsp/common/login.jsp=UTF-8
+encoding//WebRoot/jsp/common/menu_right.jsp=UTF-8
+encoding//WebRoot/jsp/common/top.jsp=UTF-8
+encoding//WebRoot/jsp/main/alarm/accept_form.jsp=UTF-8
+encoding//WebRoot/jsp/main/alarm/menu.jsp=UTF-8
+encoding//WebRoot/jsp/main/alarm/response_form.jsp=UTF-8
+encoding//WebRoot/jsp/main/alarm/table_bt.jsp=UTF-8
+encoding//WebRoot/jsp/main/alarm/table_td.jsp=UTF-8
+encoding//WebRoot/jsp/main/alarm/table_tr.jsp=UTF-8
+encoding//WebRoot/jsp/main/history.jsp=UTF-8
+encoding//WebRoot/jsp/main/monitor/menu.jsp=UTF-8

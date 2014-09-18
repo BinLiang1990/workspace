@@ -1,0 +1,2 @@
+30 2 * * * rm -rf /var/lib/tomcat5.5/webapps/VTWeb/xls/*
+
