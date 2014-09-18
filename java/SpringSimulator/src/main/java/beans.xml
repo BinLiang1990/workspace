@@ -1,0 +1,6 @@
+<beans>
+	<bean id="ud" class="com.randycode.dao.impl.UserDAOImpl"/>
+	<bean id="us" class="com.randycode.service.UserService">
+		<property name="userDAO" bean="ud"/>
+	</bean>
+</beans>

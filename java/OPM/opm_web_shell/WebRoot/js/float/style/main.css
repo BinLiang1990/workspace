@@ -1,0 +1,21 @@
+
+/*========================= 弹出层界面 ========================*/
+.floatdiv .td_topleft{background:url("../images/dialog_lt.png") no-repeat;}
+.floatdiv .td_topcenter{background:url("../images/dialog_ct.png") repeat-x;}
+.floatdiv .td_topright{background:url("../images/dialog_rt.png") no-repeat;}
+.floatdiv .td_centerleft{background:url("../images/dialog_mlm.png") repeat-y;}
+.floatdiv .td_centercenter{background:#FFF;}
+.floatdiv .td_centerright{background:url("../images/dialog_mrm.png") repeat-y;}
+.floatdiv .td_bottomleft{background:url("../images/dialog_lb.png") no-repeat;}
+.floatdiv .td_bottomcenter{background:url("../images/dialog_cb.png") repeat-x;}
+.floatdiv .td_bottomright{background:url("../images/dialog_rb.png") no-repeat;}
+.hScroll{overflow:hidden;padding-right:17px;}
+.sScroll{}
+.floatdiv{position:absolute;float:left;left:0px;top:0px;overflow:visible;display:none;}
+.floatdiv_content{width:1350px;position:absolute;float:left;top:25%;left:30%;z-index:999;clear:both; overflow:hidden;visibility:hidden}
+.floatdiv_bg{opacity:0.00;filter:progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0,finishOpacity=100);width:100%;height:100%; z-index:1; position:absolute; float:left; background:#333333;overflow:hidden;}
+.floatdiv_top{clear:both;overflow:hidden;height:33px;line-height:33px;vertical-align:bottom;background:url("../images/icon_dialog.gif") no-repeat scroll 0 15px;}
+.floatdiv_top a{float:right;text-decoration:none;margin-top:8px;}
+.floatdiv_top span{float:left;margin-left:15px;color:#FFF;font-weight:bold;height:15px;line-height:15px;margin-top:13px;display:block;width:400px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.floatdiv_button{text-align:center;clear:both;height:30px;line-height:30px;}
+.floatdiv_body{background:#FFF;}

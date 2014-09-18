@@ -1,0 +1,17 @@
+package cn.vobile.opm.dbsync.entrance;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import cn.vobile.opm.dbsync.service.UsersRepository;
+
+public class SyncUsersStart {
+
+	public static void main(String[] args) {
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+				"applicationContext.xml");
+		UsersRepository usersRepository = applicationContext.getBean(
+				"usersRepository", UsersRepository.class);
+		usersRepository.pullUsers();
+	}
+}

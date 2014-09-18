@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="user" namespace="" extends="struts-default">
+		<action name="AddUserAction" class="AddUserAction">
+			<result name="success" type="redirectAction">GetAllOpmUsersAction
+			</result>
+		</action>
+
+		<action name="DeleteUserAction" 
+			class="cn.vobile.opm.web.shell.action.userpage.DeleteUserAction">
+			<result name="success" type="redirectAction">GetAllOpmUsersAction
+			</result>
+		</action>
+		
+		<action name="GetAllOpmUsersAction" class="GetAllOpmUsersAction">
+			<result>jsp/main/user.jsp</result>
+		</action>
+
+		<action name="GetOpmUserAction" class="GetOpmUserAction">
+			<result>jsp/main/user/userInfo.jsp</result>
+		</action>
+
+		<action name="ModifyUserAction" class="ModifyUserAction">
+			<result name="success" type="redirectAction">GetAllOpmUsersAction
+			</result>
+		</action>
+
+		<action name="ModifySelfAction" class="ModifyUserAction">
+			<result name="success" type="redirectAction">GetAllOpmUsersAction
+			</result>
+		</action>
+
+		<action name="ChangePwdAction" class="ChangePwdAction">
+			<result name="success" type="redirectAction">GetAllOpmUsersAction
+			</result>
+		</action>
+
+		<action name="ChangeUserPwdAction" class="ChangePwdAction">
+			<result name="success" type="redirectAction">GetAllOpmUsersAction
+			</result>
+		</action>
+		
+		<action name="GetAllUsersAction" 
+			class="cn.vobile.opm.web.shell.action.userpage.GetAllUsersAction">
+			<result name="success" type="redirectAction">GetAllOpmUsersAction
+			</result>
+		</action>
+	</package>
+
+	<package name="idc" namespace="" extends="struts-default">
+		<action name="GetAllIdcAction" class="GetAllIdcAction">
+			<result>jsp/main/idc.jsp</result>
+		</action>
+		<action name="AddIdcAction" class="AddIdcAction">
+			<result type="redirectAction">GetAllIdcAction
+			</result>
+		</action>
+	</package>
+
+</struts>

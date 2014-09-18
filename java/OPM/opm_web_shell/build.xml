@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<project name="One Page Monitor" basedir="." default="tar">
+    <property name="appName" value="opm_web_shell"/>
+	<property name="moduleName" value="opm_web_shell"/>
+
+	<property name="webRootDir" value="WebRoot"/>
+	<property name="buildDir" value="${basedir}/build"/>
+	<property name="libDir" value="${basedir}/${webRootDir}/WEB-INF/lib"/>
+	<property name="javaSourceDir" value="${basedir}/src"/>
+	<property name="testDir" value="${basedir}/test"/>
+	<property name="webSourceDir" value="${webRootDir}_temp"/>
+	<property name="config" value="${basedir}/config"/>
+	<property name="tomcatDir" value="/usr/share/java"/>
+
+	<!-- This may get overridden when we are called from Anthill. -->
+	<property name="version" value="3.0.0.1"/>
+	<property name="deployDir" value="${buildDir}"/>
+	<property name="classDir" value="${buildDir}/classes"/>
+	<property name="distDir" value="${deployDir}/dist"/>
+	<property name="junitDir" value="${deployDir}/JUnit"/>
+	<property name="javadocDir" value="${deployDir}/apidoc"/>
+	<property name="packageName" value="opm_${moduleName}_v${version}"/>
+	<property name="packageDir" value="${distDir}/${packageName}"/>
+	<property name="isJsComplieOn" value="false"/>
+
+	<target name="init">
+        <!-- Create the directories where we put all the build products. -->
+		<mkdir dir="${buildDir}"/>
+		<mkdir dir="${classDir}"/>
+		<mkdir dir="${distDir}"/>
+		<mkdir dir="${junitDir}"/>
+		<mkdir dir="${javadocDir}"/>
+		<mkdir dir="${packageDir}"/>
+		<mkdir dir="${webSourceDir}"/>
+
+		<condition property="scondition">
+            <istrue value="${isJsComplieOn}"/>
+        </condition>
+
+		<copy todir="${webSourceDir}"  >
+			<fileset dir="${webRootDir}">
+				
+			</fileset>
+		</copy>
+
+		<path id="compileClasspath">
+			<fileset dir="${libDir}"/>
+			<fileset dir="${tomcatDir}"/>
+		</path>
+	</target>
+
+	<target name="jsCompile" depends="init" if="scondition">
+		<apply executable="java" parallel="false" failonerror="true" dest="${webSourceDir}/javascript">
+			<fileset dir="${webSourceDir}/javascript" includes="**/*.js"/>
+			<arg line="-jar"/>
+			<arg path="${libDir}/compiler.jar"/>
+			<arg line="--warning_level DEFAULT" />
+			<arg line="--compilation_level SIMPLE_OPTIMIZATIONS" />
+			<arg line="--js"/>
+			<srcfile />
+			<arg line="--js_output_file"/>
+			<targetfile />
+			<mapper type="regexp" from="^(.*)\.(js)$" to="\1-min.\2"/>
+		</apply>
+		<move todir="${webSourceDir}/javascript">
+			<fileset dir="${webSourceDir}/javascript" includes="**/*.js"/>
+			<mapper type="regexp" from="^(.*)-min\.(js)$" to="\1.\2"/>
+		</move>
+	</target>
+	<property name="findbugs.home" value="/opt/findbugs/current" />
+	<taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask" classpath="${findbugs.home}/lib/findbugs-ant.jar" />
+	<target name="findbugs" depends="compile">
+		<findbugs home="${findbugs.home}"
+            		output="xml"
+            		outputFile="findbugs.xml" >
+			<sourcePath path="${javaSourceDir}" />
+			<class location="${classDir}" />
+		</findbugs>
+    </target>
+<!--	<taskdef name="jscomp" classname="com.google.javascript.jscomp.ant.CompileTask" classpath="${libDir}/compiler.jar" />
+	<target name="jsCompile" depends="init">
+		 whitespace simple advanced 
+		<jscomp compilationLevel="simple" debug="false" output="${webSourceDir}/javascript/adminvideocatalog.js">
+			<sources dir="${webSourceDir}/javascript">
+                 <file name="adminvideocatalog.js" />
+             </sources>
+		</jscomp>
+		<jscomp compilationLevel="simple" debug="false" output="${webSourceDir}/javascript/isp_template_library.js">
+			<sources dir="${webSourceDir}/javascript">
+                 <file name="isp_template_library.js" />
+             </sources>
+		</jscomp>
+		<jscomp compilationLevel="simple" debug="false" output="${webSourceDir}/javascript/user_template_library.js">
+			<sources dir="${webSourceDir}/javascript">
+                 <file name="user_template_library.js" />
+             </sources>
+		</jscomp>
+	</target>-->
+
+	<target name="compile" depends="init, jsCompile">
+		<javac srcdir="${javaSourceDir}" destdir="${classDir}" debug="true" deprecation="true" source="1.5" target="1.5">
+			<classpath refid="compileClasspath"/>
+		</javac>
+
+        <!-- Copy files needed to run the software to destinations in the
+         build directory. I do this because I usually pull all binary files like
+         this from inside the Jar files that make up my application rather than
+         having them loose. So they need to be copied to the class dir so they
+         get included in the Jar file for the application. 		-->
+		<copy todir="${classDir}" >
+			<fileset dir="${javaSourceDir}">
+				<include name="**/*.gif"/>
+				<include name="**/*.jpg"/>
+				<include name="**/*.png"/>
+				<include name="**/*.wav"/>
+				<include name="**/*.dtd"/>
+				<include name="**/*.properties"/>
+				<include name="**/*.xml"/>
+				<include name="**/*.conf"/>
+				<include name="**/*.ccf"/>
+			</fileset>
+		</copy>
+	</target>
+
+
+	<target name="war" depends="findbugs">
+		<war destfile="${packageDir}/${appName}.war" webxml="${basedir}/${webSourceDir}/WEB-INF/web.xml">
+			<fileset dir="${webSourceDir}">
+				<exclude name="WEB-INF/classes/**/*"/>
+			</fileset>
+			<classes dir="${classDir}"/>
+		</war>
+	</target>
+
+	<target name="tar" depends="war" description="tar package built.">
+		<copy todir="${packageDir}">
+			<fileset dir="${basedir}/install">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+
+		<tar destfile="${packageDir}.tar.gz" compression="gzip" basedir="${distDir}"></tar>
+
+		<delete dir="${packageDir}"/>
+		<echo message="tar package built."/>
+	</target>
+
+	<target name="clean" depends="init" description="Clean all build products.">
+		<delete dir="${javadocDir}"/>
+		<delete dir="${junitDir}"/>
+		<delete dir="${distDir}"/>
+		<delete dir="${classDir}"/>
+		<delete dir="${buildDir}"/>
+		<delete dir="${webSourceDir}"/>
+	</target>
+
+	<path id="classpath">
+		<pathelement location="${classDir}"/>
+		<fileset dir="${webSourceDir}/WEB-INF/lib/">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+
+</project>
