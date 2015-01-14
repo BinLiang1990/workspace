@@ -1,0 +1,8 @@
+.DS_Store
+.metadata/*
+Servers/*
+test/*
+lib/
+.classpath
+.project
+.settings/

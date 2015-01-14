@@ -1,0 +1,26 @@
+2014-12-02 23:39:11,777 INFO [org.springframework.context.support.ClassPathXmlApplicationContext] - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@491f03e4: startup date [Tue Dec 02 23:39:11 CST 2014]; root of context hierarchy
+2014-12-02 23:39:11,843 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from class path resource [applicationContext.xml]
+2014-12-02 23:39:27,653 INFO [org.springframework.context.support.ClassPathXmlApplicationContext] - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1338933d: startup date [Tue Dec 02 23:39:27 CST 2014]; root of context hierarchy
+2014-12-02 23:39:27,700 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from class path resource [applicationContext.xml]
+2014-12-02 23:39:28,168 INFO [org.springframework.context.support.PropertySourcesPlaceholderConfigurer] - Loading properties file from class path resource [conf.properties]
+2014-12-02 23:39:28,546 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2014-12-02 23:39:28,887 INFO [com.hzjhp.filter.KeywordFilter] - Post 493:朝鲜时装周里比较正常的裁剪和搭配，就是配饰和发型让人不敢恭维，明明是以少女的脸庞演绎大妈的风采，这创意很是大胆，比配色还大胆。
+2014-12-02 23:39:28,888 INFO [com.hzjhp.filter.KeywordFilter] - Post 616:妈妈的新衣服
+2014-12-02 23:39:28,889 INFO [com.hzjhp.filter.KeywordFilter] - Post 836:啦啦啦，我们是快乐的小傻逼
+2014-12-02 23:39:28,889 INFO [com.hzjhp.filter.KeywordFilter] - Post 849:#搭配这件白黄牙签年宽松
+2014-12-02 23:39:28,889 INFO [com.hzjhp.filter.KeywordFilter] - Post 850:只是想八九民新鞋
+2014-12-02 23:39:28,930 INFO [com.hzjhp.filter.KeywordFilter] - Reply 780:似的，别打炮打你
+2014-12-02 23:39:28,930 INFO [com.hzjhp.filter.KeywordFilter] - Reply 782:几个意思ONS妹妹怕
+2014-12-02 23:39:28,971 INFO [com.hzjhp.filter.KeywordFilter] - Grade 4470:臭屌丝，健身房最招人烦的一类，各样器材玩一遍凹造型，造一地皮儿片儿，练5分钟能自拍1小时。这类男人普遍外强中干阳痿早泄，喜欢午夜微信上群发自己丁丁照，还脚得自己挺性感，钢铁侠T恤下隐藏着一颗约炮侠的心。瞅你狗狗嗖嗖五官抽抽了，有功夫多赚点钱吧！！！
+2014-12-02 23:47:29,508 INFO [org.springframework.context.support.ClassPathXmlApplicationContext] - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1338933d: startup date [Tue Dec 02 23:47:29 CST 2014]; root of context hierarchy
+2014-12-02 23:47:29,559 INFO [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from class path resource [applicationContext.xml]
+2014-12-02 23:47:29,916 INFO [org.springframework.context.support.PropertySourcesPlaceholderConfigurer] - Loading properties file from class path resource [conf.properties]
+2014-12-02 23:47:30,229 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2014-12-02 23:47:30,472 INFO [com.hzjhp.filter.KeywordFilter] - Post 493:朝鲜时装周里比较正常的裁剪和搭配，就是配饰和发型让人不敢恭维，明明是以少女的脸庞演绎大妈的风采，这创意很是大胆，比配色还大胆。
+2014-12-02 23:47:30,474 INFO [com.hzjhp.filter.KeywordFilter] - Post 616:妈妈的新衣服
+2014-12-02 23:47:30,475 INFO [com.hzjhp.filter.KeywordFilter] - Post 836:啦啦啦，我们是快乐的小傻逼
+2014-12-02 23:47:30,475 INFO [com.hzjhp.filter.KeywordFilter] - Post 849:#搭配这件白黄牙签年宽松
+2014-12-02 23:47:30,475 INFO [com.hzjhp.filter.KeywordFilter] - Post 850:只是想八九民新鞋
+2014-12-02 23:47:30,493 INFO [com.hzjhp.filter.KeywordFilter] - Reply 780:似的，别打炮打你
+2014-12-02 23:47:30,493 INFO [com.hzjhp.filter.KeywordFilter] - Reply 782:几个意思ONS妹妹怕
+2014-12-02 23:47:30,530 INFO [com.hzjhp.filter.KeywordFilter] - Grade 4470:臭屌丝，健身房最招人烦的一类，各样器材玩一遍凹造型，造一地皮儿片儿，练5分钟能自拍1小时。这类男人普遍外强中干阳痿早泄，喜欢午夜微信上群发自己丁丁照，还脚得自己挺性感，钢铁侠T恤下隐藏着一颗约炮侠的心。瞅你狗狗嗖嗖五官抽抽了，有功夫多赚点钱吧！！！
