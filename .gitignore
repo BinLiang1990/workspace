@@ -6,3 +6,6 @@ lib/
 .classpath
 .project
 .settings/
+dafenba-aggregate/
+dafenba-doc/
+dafenba_maven/
