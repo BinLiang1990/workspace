@@ -9,3 +9,5 @@ lib/
 dafenba-aggregate/
 dafenba-doc/
 dafenba_maven/
+node_modules/
+bower_components/
